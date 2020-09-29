@@ -3,8 +3,9 @@ const express = require('express')
 const { ExpressAdapter } = require('ask-sdk-express-adapter')
 const Alexa = require('ask-sdk-core')
 const app = express()
-const port = 3000 || process.env.PORT
 const skillBuilder = Alexa.SkillBuilders.custom()
+
+app.set('port', process.env.PORT || 3000);
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -30,4 +31,6 @@ const adapter = new ExpressAdapter(skill, false, false)
 
 app.post('/', adapter.getRequestHandlers())
 
-app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'), () => {
+  console.log('Server on port', app.get('port'))
+});
