@@ -30,4 +30,4 @@ const adapter = new ExpressAdapter(skill, false, false)
 
 app.post('/', adapter.getRequestHandlers())
 
-app.listen(port)
+app.set('port', process.env.PORT || 3000);
