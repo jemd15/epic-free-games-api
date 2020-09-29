@@ -31,6 +31,13 @@ const adapter = new ExpressAdapter(skill, false, false)
 
 app.post('/', adapter.getRequestHandlers())
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'get de skill de alexa'
+  })
+})
+
 app.listen(app.get('port'), () => {
   console.log('Server on port', app.get('port'))
 });
